@@ -5,10 +5,16 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -21,34 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: |
-          echo "Node version: $(node -v)"
-          echo "NPM version: $(npm -v)"
-          npm ci
+        run: npm ci
 
-      - name: Type check and build
-        run: |
-          echo "Starting build..."
-          # Temporarily rename test files to avoid TypeScript errors during build
-          find src -name "*.test.tsx" -exec mv {} {}.bak \;
-          npm run build
-          # Restore test files
-          find src -name "*.test.tsx.bak" -exec bash -c 'mv "$1" "${1%.bak}"' - {} \;
+      - name: Build
+        run: npm run build
         env:
-          CI: true
           NODE_ENV: production
 
-      - name: List build output
-        if: always()
-        run: |
-          echo "Listing build output..."
-          ls -la dist || true
-
       - name: Upload artifact
-        if: success()
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
