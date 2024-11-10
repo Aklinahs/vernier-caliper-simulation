@@ -4,19 +4,29 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: '/vernier-caliper-simulation/', // Add this line - should match your repository name
+  base: '/vernier-caliper-simulation/',
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, 'src') }
+    ],
   },
   test: {
     globals: true,
-    environment: "jsdom",
-    setupFiles: "./tests/setup.ts",
+    environment: 'jsdom',
+    setupFiles: ['./tests/setup.ts'],
     css: true,
     coverage: {
-      reporter: ["text", "json", "html"],
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+    },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
     },
   },
 });

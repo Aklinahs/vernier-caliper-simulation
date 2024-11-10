@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
-import { screen } from "@testing-library/dom";
-import { ScaleMarking } from "@/components/caliper/scales/ScaleMarking";
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { ScaleMarking } from "./ScaleMarking";
 
 describe("ScaleMarking", () => {
   it("renders marking at correct position", () => {
