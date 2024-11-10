@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import create from 'zustand';
 
 interface CaliperStore {
   // State
@@ -12,12 +12,12 @@ interface CaliperStore {
   setZoomLevel: (level: number) => void;
 }
 
-export const useCaliperStore = create<CaliperStore>((set) => ({
+export const useCaliperStore = create<CaliperStore>((set: (arg0: { currentPosition?: any; viewMode?: any; zoomLevel?: any; }) => any) => ({
   currentPosition: 0,
   viewMode: "normal",
   zoomLevel: 1,
 
-  setPosition: (position) => set({ currentPosition: position }),
-  setViewMode: (mode) => set({ viewMode: mode }),
-  setZoomLevel: (level) => set({ zoomLevel: level }),
+  setPosition: (position: any) => set({ currentPosition: position }),
+  setViewMode: (mode: any) => set({ viewMode: mode }),
+  setZoomLevel: (level: any) => set({ zoomLevel: level }),
 }));

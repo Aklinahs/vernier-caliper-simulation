@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write # Add explicit permissions
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -13,26 +13,27 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Updated from v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4 # Updated from v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "20" # Updated to latest LTS
+          node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Clean install dependencies
         run: |
-          npm ci
-          npm install typescript@latest -g # Ensure TypeScript is available
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Type check
-        run: npm run type-check || true # Add type checking step
+        run: npm run type-check || true
 
       - name: Build
         run: npm run build
         env:
-          CI: false # Prevents treating warnings as errors
+          CI: false
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -40,5 +41,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           force_orphan: true
-          cname: null # Remove if you don't have a custom domain
           enable_jekyll: false
