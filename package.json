@@ -2,6 +2,7 @@
   "name": "vernier-caliper-simulation",
   "private": true,
   "version": "0.0.1",
+  "homepage": "https://aklinahs.github.io/vernier-caliper-simulation/",
   "type": "module",
   "engines": {
     "node": ">=20.0.0",
