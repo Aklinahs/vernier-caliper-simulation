@@ -1,14 +1,16 @@
 {
   "name": "vernier-caliper-simulation",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
+  "version": "0.0.1",
+  "homepage": "https://Aklinahs.github.io/vernier-caliper-simulation",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
@@ -38,6 +40,7 @@
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",

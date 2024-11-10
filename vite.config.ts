@@ -4,6 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: '/vernier-caliper-simulation/', // Add this line - should match your repository name
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
