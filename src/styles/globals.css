@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --caliper-body: #2B3440;
+  --caliper-scale: #4A5568;
+  --caliper-marking: #CBD5E0;
+  --caliper-hover: #3B4758;
+  --caliper-active: #1A202C;
+}
+
+body {
+  @apply bg-gray-50;
+}
+
+/* Add any global styles here */
