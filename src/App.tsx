@@ -1,22 +1,27 @@
 import React from "react";
-import { Header } from "./components/layout/Header";
-import { Footer } from "./components/layout/Footer";
-import { UnderConstruction } from "./components/layout/UnderConstruction";
-import { NavBar } from "./components/navigation/NavBar";
 import { AppRoutes } from "./routes";
+import { NavBar } from "./components/navigation/NavBar";
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <UnderConstruction />
-      <Header />
+    <div className="min-h-screen bg-gray-100">
+      {/* Under Construction Banner */}
+      <div className="bg-yellow-100 p-2 text-center">
+        🚧 This project is under construction
+      </div>
+
+      {/* Navigation */}
       <NavBar />
 
-      <main className="flex-grow">
+      {/* Main Content */}
+      <main className="container mx-auto p-4">
         <AppRoutes />
       </main>
 
-      <Footer />
+      {/* Footer */}
+      <footer className="bg-white p-4 text-center mt-8">
+        <p>© 2024 Vernier Caliper Simulation</p>
+      </footer>
     </div>
   );
 };
